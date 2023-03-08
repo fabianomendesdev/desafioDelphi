@@ -1,0 +1,187 @@
+object FrmPrincipal: TFrmPrincipal
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  ClientHeight = 685
+  ClientWidth = 1479
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  Scaled = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblEnviar: TLabel
+    Left = 14
+    Top = 58
+    Width = 46
+    Height = 21
+    Caption = 'Enviar'
+    FocusControl = mmoEnviar
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblReceber: TLabel
+    Left = 14
+    Top = 370
+    Width = 61
+    Height = 21
+    Caption = 'Receber'
+    FocusControl = mmoReceber
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object mmoEnviar: TMemo
+    Left = 14
+    Top = 85
+    Width = 443
+    Height = 212
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Lines.Strings = (
+      '699 ROSELI SEVERINA DA SILVA'
+      'CPF/CNPJ: 26757475000110'
+      'MERC. O BARATEIRO (GALEGO DA AGUA)'
+      'RG/I.E: 070101841 Fone:'
+      'Celular: 08199902035 E-Mail: 00000000000000000'
+      'Endere'#231'o: RUA SEVERINO FONTES 53, , CENTRO, '
+      '55650000, PASSIRA'
+      ' '
+      '362 ALEXSANDRO FRANCISCO DA SILVA'
+      'CPF/CNPJ: 17336427000168'
+      'ABATEDOURO CENTRAL'
+      'RG/I.E: Fone:'
+      'Celular: E-Mail: 00000000'
+      'Endere'#231'o: RUA MARIA JULIA DA MOTA 52, , CENTRO, '
+      '55700000, RIACHO DAS ALMAS'
+      ''
+      '78 ADEJALDO JOAQUIM DA SILVA'
+      'CPF/CNPJ: 02829413474'
+      'ADEJALDO'
+      'RG/I.E: Fone:'
+      'Celular: E-Mail: OOOOOOOOOOO'
+      'Endere'#231'o: ALTO JOSE CABLOCO 52, , ALTO SAO JOSE, '
+      '55650000, PASSIRA')
+    ParentFont = False
+    TabOrder = 0
+  end
+  object mmoReceber: TMemo
+    Left = 14
+    Top = 397
+    Width = 1443
+    Height = 212
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+  end
+  object AdvPanel1: TAdvPanel
+    Left = 0
+    Top = 0
+    Width = 1479
+    Height = 41
+    Align = alTop
+    Color = 12615680
+    TabOrder = 2
+    UseDockManager = True
+    Version = '2.5.4.1'
+    Caption.Color = clHighlight
+    Caption.ColorTo = clNone
+    Caption.Font.Charset = DEFAULT_CHARSET
+    Caption.Font.Color = clWindowText
+    Caption.Font.Height = -11
+    Caption.Font.Name = 'Tahoma'
+    Caption.Font.Style = []
+    Caption.Indent = 0
+    DoubleBuffered = True
+    StatusBar.Font.Charset = DEFAULT_CHARSET
+    StatusBar.Font.Color = clWindowText
+    StatusBar.Font.Height = -11
+    StatusBar.Font.Name = 'Tahoma'
+    StatusBar.Font.Style = []
+    Text = ''
+    ExplicitWidth = 527
+    FullHeight = 200
+    object Label1: TLabel
+      Left = 14
+      Top = 12
+      Width = 72
+      Height = 19
+      Caption = 'DESAFIO'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -17
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object btnEnviar: TButton
+    Left = 311
+    Top = 303
+    Width = 200
+    Height = 40
+    Caption = 'Enviar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    OnClick = btnEnviarClick
+  end
+  object btnCopiar: TButton
+    Left = 159
+    Top = 618
+    Width = 200
+    Height = 40
+    Caption = 'Copiar'
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    OnClick = btnCopiarClick
+  end
+  object btnAbrirArquivo: TButton
+    Left = 105
+    Top = 303
+    Width = 200
+    Height = 40
+    Caption = 'Abrir Arquivo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    OnClick = btnAbrirArquivoClick
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 600
+    Top = 328
+  end
+end

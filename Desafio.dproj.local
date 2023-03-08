@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/01/17 13:37:13.000.919,=C:\Users\fabia\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/01/18 11:50:10.000.612,=C:\Users\fabia\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/03/07 18:52:15.000.306,=C:\Users\fabia\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/03/07 18:53:29.000.711,C:\Users\fabia\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principal.dfm</Transaction>
+    <Transaction>2023/03/07 18:53:29.000.711,C:\Users\fabia\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principal.pas</Transaction>
+    <Transaction>2023/03/07 18:53:41.000.253,C:\Users\fabia\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Desafio.dproj</Transaction>
+    <Transaction>2023/03/07 18:54:21.000.633,P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principal.pas=P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principall.pas</Transaction>
+    <Transaction>2023/03/07 18:54:21.000.633,P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principal.dfm=P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principall.dfm</Transaction>
+    <Transaction>2023/03/07 18:54:36.000.153,P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principall.pas=P:\Desenvolvimento\Delphi\PROJETOS\Desafio\untFrmPrincipal.pas</Transaction>
+    <Transaction>2023/03/07 18:54:36.000.153,P:\Desenvolvimento\Delphi\PROJETOS\Desafio\Principall.dfm=P:\Desenvolvimento\Delphi\PROJETOS\Desafio\untFrmPrincipal.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

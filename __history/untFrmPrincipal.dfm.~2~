@@ -1,0 +1,33 @@
+object FrmPrincipal: TFrmPrincipal
+  Left = 0
+  Top = 0
+  ClientHeight = 388
+  ClientWidth = 527
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Memo1: TMemo
+    Left = 24
+    Top = 80
+    Width = 465
+    Height = 105
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 0
+  end
+  object Memo2: TMemo
+    Left = 24
+    Top = 231
+    Width = 465
+    Height = 105
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+end
