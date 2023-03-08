@@ -187,7 +187,7 @@ begin
           cep := Sanitize(cep);
           cidade := Sanitize(cidade);
 
-          mmoReceber.Lines.Add('INSERT INTO clients (id, name, `cpf/cnpj`, person_type, fantasy_nickname, public_place, street_number, complement, district, zipcode, cidade) VALUES ('+
+          mmoReceber.Lines.Add('INSERT INTO clients (id, name, cpf/cnpj, person_type, fantasy_nickname, public_place, street_number, complement, district, zipcode, cidade) VALUES ('+
           IfThen(id > 0, IntToStr(id), 'NULL') + ', ' + nome + ', ' + cpfCnpj + ', ' + QuotedStr(tipoPessoa) + ', ' + logradouro + ', ' + numero + ', ' + complemento + ', ' + bairro + ', ' + cep + ', ' + cidade +');');
         end;
 

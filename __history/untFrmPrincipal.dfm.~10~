@@ -114,6 +114,7 @@ object FrmPrincipal: TFrmPrincipal
     StatusBar.Font.Name = 'Tahoma'
     StatusBar.Font.Style = []
     Text = ''
+    ExplicitWidth = 1479
     FullHeight = 200
     object Label1: TLabel
       Left = 14
