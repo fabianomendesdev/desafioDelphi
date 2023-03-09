@@ -89,14 +89,11 @@ var
   logradouro,   email,
   complemento,  bairro,
   cep,          cidade,
-  numero,       tipoPessoa,
-  idcity        : String;
+  numero,       tipoPessoa: String;
 
   linhas:           TStringDynArray;
   logradouroNumero: TStringDynArray;
   enderecoArray:    TStringDynArray;
-
-  caseCidades: Integer;
 begin
   linhas := SplitString(mmoEnviar.Text, #13);
   Try
@@ -150,122 +147,48 @@ begin
             enderecoArray := SplitString(StringReplace(linha, 'Endereço:', '', [rfReplaceAll, rfIgnoreCase]), ',');
 
             if Length(enderecoArray) <> 5 then
+              Continue;
+
+            logradouroNumero := SplitString(Trim(enderecoArray[0]), ' ');
+            numero := IfThen(StrToIntDef(logradouroNumero[Length(logradouroNumero)-1], 0) > 0, logradouroNumero[Length(logradouroNumero)-1], 'S/N');
+
+            if numero = 'S/N' then
             begin
-              logradouro  := '';
-              numero      := '';
-              complemento := '';
-              bairro      := '';
-              cep         := '';
-              cidade      := '';
+              tamanhoLogradouro := Length(logradouroNumero) -1;
             end
               else
               begin
-                logradouroNumero := SplitString(Trim(enderecoArray[0]), ' ');
-                numero := IfThen(StrToIntDef(logradouroNumero[Length(logradouroNumero)-1], 0) > 0, logradouroNumero[Length(logradouroNumero)-1], 'S/N');
-                complemento := enderecoArray[1];
-                bairro      := enderecoArray[2];
-                cep         := enderecoArray[3];
-                cidade      := enderecoArray[4];
-
-                if numero = 'S/N' then
-                begin
-                  tamanhoLogradouro := Length(logradouroNumero) -1;
-                end
-                  else
-                  begin
-                    tamanhoLogradouro := Length(logradouroNumero) - 2;
-                  end;
-
-                logradouro := '';
-                for J := 0 to tamanhoLogradouro do
-                begin
-                  logradouro := logradouro + ' ' + logradouroNumero[J];
-                end;              
+                tamanhoLogradouro := Length(logradouroNumero) - 2;
               end;
+
+            logradouro := '';
+            for J := 0 to tamanhoLogradouro do
+            begin
+              logradouro := logradouro + ' ' + logradouroNumero[J];
+            end;
+
+            complemento := enderecoArray[1];
+            bairro      := enderecoArray[2];
+            cep         := enderecoArray[3];
+            cidade      := enderecoArray[4];
           end;
         end;
 
         if linhaQtd = 6 then
         begin
-          tipoPessoa := IfThen(cpfCnpj = '', '', IfThen(Length(cpfCnpj) > 12, 'J','F'));
+          tipoPessoa := IfThen(cpfCnpj.Length > 11, 'J', 'F');
 
           nome := Sanitize(nome);
           complemento := Sanitize(complemento);
           cpfCnpj := Sanitize(cpfCnpj);
-          tipoPessoa := Sanitize(tipoPessoa);
-          nomeFantasia := Sanitize(nomeFantasia);
           logradouro := Sanitize(logradouro);
           numero := Sanitize(numero);
           bairro := Sanitize(bairro);
           cep := Sanitize(cep);
-          cidade := Trim(cidade);
+          cidade := Sanitize(cidade);
 
-          caseCidades := AnsiIndexStr(UpperCase(cidade),
-          ['', ' ', 'PASSIRA','LIMOEIRO','RIACHO DAS ALMAS','SALGADINHO','CUMARU',
-          'JOÃO ALFREDO', 'UMBUZEIRO','BOM JARDIM','FEIRA NOVA','FEIRA NOVA','RECIFE']);
-
-          case caseCidades of
-            0,1:
-            begin
-              idcity := 'NULL';
-            end;
-
-            2:
-            begin
-              idcity := '1488';
-            end;
-
-            3:
-            begin
-               idcity := '1470';
-            end;
-
-            4:
-            begin
-              idcity := '1501';
-            end;
-
-            5:
-            begin
-              idcity := '1505';
-            end;
-
-            6:
-            begin
-              idcity := '1421';
-            end;
-
-            7:
-            begin
-              idcity := '1459';
-            end;
-
-            8:
-            begin
-              idcity := '2211';
-            end;
-
-            9:
-            begin
-              idcity := '1586';
-            end;
-
-            10:
-            begin
-              idcity := '1427';
-            end;
-
-            11:
-            begin
-              idcity := '1500';
-            end;
-
-            else
-              idcity := 'NULL';
-          end;
-
-          mmoReceber.Lines.Add('INSERT INTO clients (id, name, cpf_cnpj, person_type, fantasy_nickname, public_place, street_number, complement, district, zipcode, id_city) VALUES ('+
-          IfThen(id > 0, IntToStr(id), 'NULL') + ', ' + nome + ', ' + cpfCnpj + ', ' + tipoPessoa + ', ' + nomeFantasia + ', ' + logradouro + ', ' + numero + ', ' + complemento + ', ' + bairro + ', ' + cep + ', ' + idcity +');');
+          mmoReceber.Lines.Add('INSERT INTO clients (id, name, `cpf/cnpj`, person_type, fantasy_nickname, public_place, street_number, complement, district, zipcode, cidade) VALUES ('+
+          IfThen(id > 0, IntToStr(id), 'NULL') + ', ' + nome + ', ' + cpfCnpj + ', ' + QuotedStr(tipoPessoa) + ', ' + logradouro + ', ' + numero + ', ' + complemento + ', ' + bairro + ', ' + cep + ', ' + cidade +');');
         end;
 
         linhaQtd := linhaQtd + 1;
@@ -298,7 +221,6 @@ end;
 procedure TFrmPrincipal.btnLimparEnviarClick(Sender: TObject);
 begin
   mmoEnviar.Lines.Clear;
-  mmoReceber.Lines.Clear;
   VerificarEnviar();
 end;
 

@@ -150,38 +150,30 @@ begin
             enderecoArray := SplitString(StringReplace(linha, 'Endereço:', '', [rfReplaceAll, rfIgnoreCase]), ',');
 
             if Length(enderecoArray) <> 5 then
+              Continue;
+
+            logradouroNumero := SplitString(Trim(enderecoArray[0]), ' ');
+            numero := IfThen(StrToIntDef(logradouroNumero[Length(logradouroNumero)-1], 0) > 0, logradouroNumero[Length(logradouroNumero)-1], 'S/N');
+
+            if numero = 'S/N' then
             begin
-              logradouro  := '';
-              numero      := '';
-              complemento := '';
-              bairro      := '';
-              cep         := '';
-              cidade      := '';
+              tamanhoLogradouro := Length(logradouroNumero) -1;
             end
               else
               begin
-                logradouroNumero := SplitString(Trim(enderecoArray[0]), ' ');
-                numero := IfThen(StrToIntDef(logradouroNumero[Length(logradouroNumero)-1], 0) > 0, logradouroNumero[Length(logradouroNumero)-1], 'S/N');
-                complemento := enderecoArray[1];
-                bairro      := enderecoArray[2];
-                cep         := enderecoArray[3];
-                cidade      := enderecoArray[4];
-
-                if numero = 'S/N' then
-                begin
-                  tamanhoLogradouro := Length(logradouroNumero) -1;
-                end
-                  else
-                  begin
-                    tamanhoLogradouro := Length(logradouroNumero) - 2;
-                  end;
-
-                logradouro := '';
-                for J := 0 to tamanhoLogradouro do
-                begin
-                  logradouro := logradouro + ' ' + logradouroNumero[J];
-                end;              
+                tamanhoLogradouro := Length(logradouroNumero) - 2;
               end;
+
+            logradouro := '';
+            for J := 0 to tamanhoLogradouro do
+            begin
+              logradouro := logradouro + ' ' + logradouroNumero[J];
+            end;
+
+            complemento := enderecoArray[1];
+            bairro      := enderecoArray[2];
+            cep         := enderecoArray[3];
+            cidade      := enderecoArray[4];
           end;
         end;
 
@@ -259,6 +251,8 @@ begin
             begin
               idcity := '1500';
             end;
+
+
 
             else
               idcity := 'NULL';

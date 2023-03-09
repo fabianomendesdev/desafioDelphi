@@ -150,38 +150,30 @@ begin
             enderecoArray := SplitString(StringReplace(linha, 'Endereço:', '', [rfReplaceAll, rfIgnoreCase]), ',');
 
             if Length(enderecoArray) <> 5 then
+              Continue;
+
+            logradouroNumero := SplitString(Trim(enderecoArray[0]), ' ');
+            numero := IfThen(StrToIntDef(logradouroNumero[Length(logradouroNumero)-1], 0) > 0, logradouroNumero[Length(logradouroNumero)-1], 'S/N');
+
+            if numero = 'S/N' then
             begin
-              logradouro  := '';
-              numero      := '';
-              complemento := '';
-              bairro      := '';
-              cep         := '';
-              cidade      := '';
+              tamanhoLogradouro := Length(logradouroNumero) -1;
             end
               else
               begin
-                logradouroNumero := SplitString(Trim(enderecoArray[0]), ' ');
-                numero := IfThen(StrToIntDef(logradouroNumero[Length(logradouroNumero)-1], 0) > 0, logradouroNumero[Length(logradouroNumero)-1], 'S/N');
-                complemento := enderecoArray[1];
-                bairro      := enderecoArray[2];
-                cep         := enderecoArray[3];
-                cidade      := enderecoArray[4];
-
-                if numero = 'S/N' then
-                begin
-                  tamanhoLogradouro := Length(logradouroNumero) -1;
-                end
-                  else
-                  begin
-                    tamanhoLogradouro := Length(logradouroNumero) - 2;
-                  end;
-
-                logradouro := '';
-                for J := 0 to tamanhoLogradouro do
-                begin
-                  logradouro := logradouro + ' ' + logradouroNumero[J];
-                end;              
+                tamanhoLogradouro := Length(logradouroNumero) - 2;
               end;
+
+            logradouro := '';
+            for J := 0 to tamanhoLogradouro do
+            begin
+              logradouro := logradouro + ' ' + logradouroNumero[J];
+            end;
+
+            complemento := enderecoArray[1];
+            bairro      := enderecoArray[2];
+            cep         := enderecoArray[3];
+            cidade      := enderecoArray[4];
           end;
         end;
 
@@ -201,63 +193,63 @@ begin
           cidade := Trim(cidade);
 
           caseCidades := AnsiIndexStr(UpperCase(cidade),
-          ['', ' ', 'PASSIRA','LIMOEIRO','RIACHO DAS ALMAS','SALGADINHO','CUMARU',
-          'JOÃO ALFREDO', 'UMBUZEIRO','BOM JARDIM','FEIRA NOVA','FEIRA NOVA','RECIFE']);
+          ['PASSIRA','LIMOEIRO','RIACHO DAS ALMAS','SALGADINHO','CUMARU',
+          'JOÃO ALFREDO', 'UMBUZEIRO','BOM JARDIM','FEIRA NOVA','FEIRA NOVA','RECIFE', '' , ' ']);
 
           case caseCidades of
-            0,1:
-            begin
-              idcity := 'NULL';
-            end;
-
-            2:
+            0:
             begin
               idcity := '1488';
             end;
 
-            3:
+            1:
             begin
                idcity := '1470';
             end;
 
-            4:
+            2:
             begin
               idcity := '1501';
             end;
 
-            5:
+            3:
             begin
               idcity := '1505';
             end;
 
-            6:
+            4:
             begin
               idcity := '1421';
             end;
 
-            7:
+            5:
             begin
               idcity := '1459';
             end;
 
-            8:
+            6:
             begin
               idcity := '2211';
             end;
 
-            9:
+            7:
             begin
               idcity := '1586';
             end;
 
-            10:
+            8:
             begin
               idcity := '1427';
             end;
 
-            11:
+            9:
             begin
               idcity := '1500';
+            end;
+
+            10, 11:
+            begin
+              idcity := 'NULL';
             end;
 
             else
